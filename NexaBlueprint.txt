@@ -1,0 +1,53 @@
+🛠️ Phase 1: Foundation and Data Engineering (The Blueprint)
+This phase is entirely about defining the project scope, assembling the unique training data, and preparing it for the machine learning process.
+
+Step 1: Define Nexa's Scope and Architecture (The "Nexa Vision")
+Before any coding begins, we must define exactly what Nexa is and what sets it apart.
+
+1.1. Core Objective: Define Nexa's main purpose. Is it a general assistant, a coding specialist, a medical knowledge base, or something else?
+
+Example: Nexa is a secure, general-purpose conversational AI focused on enterprise-level data summarization and internal knowledge retrieval.
+
+1.2. Model Architecture: You must decide on the base structure. Since modern LLMs are based on it, we will choose the Transformer Architecture.
+
+Decision: Nexa will use a Decoder-only Transformer (similar to GPT) as it is best suited for generative, conversational tasks.
+
+1.3. Scale Plan: Determine the target size for the first version (V1.0). Due to resource constraints, we aim for a small but mighty first model that proves the concept.
+
+Decision: Target a model size of 1.3 Billion to 7 Billion parameters. This is trainable on advanced single-node hardware (which you'll need to secure later) and is the first step toward scaling to the hundreds of billions of parameters seen in commercial models.
+
+Step 2: Custom Data Collection & Sourcing (The "Own Data" Mandate)
+This is the most critical and proprietary step. Since you are using your own data, we focus on curating unique, high-quality, and secure sources.
+
+2.1. Identify Unique Data Sources: Secure, proprietary data is Nexa's competitive edge.
+
+Focus: Internal documents, specific domain knowledge bases, curated and licensed text archives, or unique public-domain collections (e.g., academic texts, technical manuals) not commonly used by competitors.
+
+2.2. Data Acquisition Plan: Implement secure and verifiable collection methods.
+
+Action: Use secure APIs, dedicated scripts for licensed data, and version control (like Git) to track all data provenance.
+
+2.3. Security & Privacy: This is non-negotiable for a "secure" model.
+
+Action: Data Anonymization/Masking: Immediately remove or replace all Personally Identifiable Information (PII) and sensitive corporate data before it is ever used for training. Encryption: Ensure all collected data is encrypted both in transit and at rest.
+
+Step 3: Data Pre-processing Pipeline (Ensuring Quality and Security)
+Raw data is useless. This phase cleans, standardizes, and secures the corpus.
+
+3.1. Cleaning & Filtering:
+
+Action: Develop scripts to remove duplicates (using techniques like MinHash to catch near-duplicates), filter out low-quality/boilerplate text (e.g., navigational links, excessive error messages), and normalize formatting (e.g., standardizing markdown, HTML removal).
+
+Security Filter: Implement rules to specifically filter out known toxic, biased, or adversarial content that could lead to model misuse.
+
+3.2. Tokenization: The model needs to break text into numerical pieces (tokens).
+
+Action: Develop a custom Byte-Pair Encoding (BPE) tokenizer based on the final, cleaned dataset. This ensures the vocabulary is highly efficient for Nexa's unique data and domain, improving performance.
+
+3.3. Data Split: Divide the final corpus into three secure, non-overlapping subsets:
+
+Training Set (95%): For the model to learn from.
+
+Validation Set (2%): Used during training to monitor progress and tune hyperparameters.
+
+Test Set (3%): Held aside and never seen by the model until the very end, to measure true final performance.
